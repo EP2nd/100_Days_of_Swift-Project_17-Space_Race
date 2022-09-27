@@ -63,6 +63,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         player.position = location
     }
+    // Challenge 1:
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if children.contains(player) {
+            gameOver()
+        } else {
+            return
+        }
+    }
+    // Challenge 1:
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if children.contains(player) {
+            gameOver()
+        } else {
+            return
+        }
+    }
     
     override func update(_ currentTime: TimeInterval) {
         for node in children {
@@ -89,8 +105,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.linearDamping = 0
         sprite.physicsBody?.angularDamping = 0
     }
-    
+    // Challenge 1:
     func didBegin(_ contact: SKPhysicsContact) {
+        gameOver()
+    }
+    
+    // Challenge 1:
+    func gameOver() {
         let explosion = SKEmitterNode(fileNamed: "explosion")!
         explosion.position = player.position
         addChild(explosion)
