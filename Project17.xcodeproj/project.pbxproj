@@ -9,24 +9,26 @@
 /* Begin PBXBuildFile section */
 		B835C45F28E1C8A500C71F34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B835C45E28E1C8A500C71F34 /* AppDelegate.swift */; };
 		B835C46128E1C8A500C71F34 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B835C46028E1C8A500C71F34 /* GameScene.sks */; };
-		B835C46328E1C8A500C71F34 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B835C46228E1C8A500C71F34 /* Actions.sks */; };
 		B835C46528E1C8A500C71F34 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B835C46428E1C8A500C71F34 /* GameScene.swift */; };
 		B835C46728E1C8A500C71F34 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B835C46628E1C8A500C71F34 /* GameViewController.swift */; };
 		B835C46A28E1C8A500C71F34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B835C46828E1C8A500C71F34 /* Main.storyboard */; };
 		B835C46C28E1C8A700C71F34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B835C46B28E1C8A700C71F34 /* Assets.xcassets */; };
 		B835C46F28E1C8A700C71F34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B835C46D28E1C8A700C71F34 /* LaunchScreen.storyboard */; };
+		B835C47728E1C8D100C71F34 /* starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = B835C47528E1C8D100C71F34 /* starfield.sks */; };
+		B835C47828E1C8D100C71F34 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = B835C47628E1C8D100C71F34 /* explosion.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B835C45B28E1C8A500C71F34 /* Project17.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project17.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B835C45E28E1C8A500C71F34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B835C46028E1C8A500C71F34 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		B835C46228E1C8A500C71F34 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		B835C46428E1C8A500C71F34 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		B835C46628E1C8A500C71F34 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B835C46928E1C8A500C71F34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B835C46B28E1C8A700C71F34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B835C46E28E1C8A700C71F34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B835C47528E1C8D100C71F34 /* starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = starfield.sks; sourceTree = "<group>"; };
+		B835C47628E1C8D100C71F34 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +63,13 @@
 			children = (
 				B835C45E28E1C8A500C71F34 /* AppDelegate.swift */,
 				B835C46028E1C8A500C71F34 /* GameScene.sks */,
-				B835C46228E1C8A500C71F34 /* Actions.sks */,
 				B835C46428E1C8A500C71F34 /* GameScene.swift */,
 				B835C46628E1C8A500C71F34 /* GameViewController.swift */,
 				B835C46828E1C8A500C71F34 /* Main.storyboard */,
 				B835C46B28E1C8A700C71F34 /* Assets.xcassets */,
 				B835C46D28E1C8A700C71F34 /* LaunchScreen.storyboard */,
+				B835C47628E1C8D100C71F34 /* explosion.sks */,
+				B835C47528E1C8D100C71F34 /* starfield.sks */,
 			);
 			path = Project17;
 			sourceTree = "<group>";
@@ -133,7 +136,8 @@
 				B835C46128E1C8A500C71F34 /* GameScene.sks in Resources */,
 				B835C46C28E1C8A700C71F34 /* Assets.xcassets in Resources */,
 				B835C46F28E1C8A700C71F34 /* LaunchScreen.storyboard in Resources */,
-				B835C46328E1C8A500C71F34 /* Actions.sks in Resources */,
+				B835C47828E1C8D100C71F34 /* explosion.sks in Resources */,
+				B835C47728E1C8D100C71F34 /* starfield.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,8 +303,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,8 +331,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
