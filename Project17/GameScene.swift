@@ -8,9 +8,9 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
     var starfield: SKEmitterNode!
     var player: SKSpriteNode!
+    let possibleEnemies = ["ball", "hammer", "tv"]
     
     var scoreLabel: SKLabelNode!
     var score = 0 {
@@ -19,38 +19,60 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    let possibleEnemies = ["ball", "hammer", "tv"]
     var isGameOver = false
     var gameTimer: Timer?
-    var enemiesCreated = 0
     var timeInterval = 1.0
+    var enemiesCreated = 0
+    
+    var gameOverLabel: SKLabelNode!
+    var restartLabel: SKLabelNode!
     
     override func didMove(to view: SKView) {
         backgroundColor = .black
         
         starfield = SKEmitterNode(fileNamed: "starfield")
         starfield.position = CGPoint(x: 1024, y: 384)
+        starfield.zPosition = -1
         starfield.advanceSimulationTime(10)
         addChild(starfield)
-        starfield.zPosition = -1
-        
-        player = SKSpriteNode(imageNamed: "player")
-        player.position = CGPoint(x: 100, y: 384)
-        player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
-        player.physicsBody?.contactTestBitMask = 1
-        addChild(player)
         
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.position = CGPoint(x: 16, y: 16)
         scoreLabel.horizontalAlignmentMode = .left
         addChild(scoreLabel)
         
-        score = 0
-        
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
         
+        start()
+    }
+    
+    func start() {
+        player = SKSpriteNode(imageNamed: "player")
+        player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
+        player.physicsBody?.contactTestBitMask = 1
+        player.position = CGPoint(x: 100, y: 384)
+        addChild(player)
+        
         gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
+        
+        score = 0
+        enemiesCreated = 0
+        timeInterval = 1.0
+        isGameOver = false
+        
+        if let gameOverLabel = gameOverLabel {
+            gameOverLabel.removeFromParent()
+        }
+        if let restartLabel = restartLabel {
+            restartLabel.removeFromParent()
+        }
+        
+        for node in children {
+            if node.name == "Debris" {
+                node.removeFromParent()
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -67,18 +89,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     // Challenge 1:
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        
+        let location = touch.location(in: self)
+        let objects = nodes(at: location)
+        
         if children.contains(player) {
             gameOver()
-        } else {
-            return
         }
-    }
-    // Challenge 1:
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if children.contains(player) {
-            gameOver()
-        } else {
-            return
+        
+        if objects.contains(restartLabel) {
+            start()
         }
     }
     
@@ -103,7 +124,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let sprite = SKSpriteNode(imageNamed: enemy)
         sprite.position = CGPoint(x: 1200, y: Int.random(in: 50...736))
+        sprite.name = "Debris"
         addChild(sprite)
+        
         enemiesCreated += 1
         
         sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size: sprite.size)
@@ -126,7 +149,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         gameOver()
     }
-    
     // Challenge 1:
     func gameOver() {
         let explosion = SKEmitterNode(fileNamed: "explosion")!
@@ -136,5 +158,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.removeFromParent()
         
         isGameOver = true
+        
+        gameOverLabel = SKLabelNode(fontNamed: "Chalkduster")
+        gameOverLabel.text = "Game over!"
+        gameOverLabel.horizontalAlignmentMode = .center
+        gameOverLabel.position = CGPoint(x: 512, y: 384)
+        gameOverLabel.zPosition = 1
+        addChild(gameOverLabel)
+        
+        restartLabel = SKLabelNode(fontNamed: "Chalkduster")
+        restartLabel.text = "Restart"
+        restartLabel.horizontalAlignmentMode = .center
+        restartLabel.position = CGPoint(x: 512, y: 304)
+        restartLabel.zPosition = 1
+        addChild(restartLabel)
     }
 }
