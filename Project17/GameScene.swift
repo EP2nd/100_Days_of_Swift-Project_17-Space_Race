@@ -94,6 +94,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func createEnemy() {
+        // Challenge 3:
+        if isGameOver {
+            return
+        }
+        
         guard let enemy = possibleEnemies.randomElement() else { return }
         
         let sprite = SKSpriteNode(imageNamed: enemy)
@@ -111,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Challenge 2:
         if enemiesCreated >= 20 && enemiesCreated % 20 == 0 {
             gameTimer?.invalidate()
-            if timeInterval > 0.1 {
+            if timeInterval >= 0.3 {
                 timeInterval -= 0.1
             }
             gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
