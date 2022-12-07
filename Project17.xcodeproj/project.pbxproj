@@ -66,8 +66,8 @@
 				B835C46428E1C8A500C71F34 /* GameScene.swift */,
 				B835C46628E1C8A500C71F34 /* GameViewController.swift */,
 				B835C46828E1C8A500C71F34 /* Main.storyboard */,
-				B835C46B28E1C8A700C71F34 /* Assets.xcassets */,
 				B835C46D28E1C8A700C71F34 /* LaunchScreen.storyboard */,
+				B835C46B28E1C8A700C71F34 /* Assets.xcassets */,
 				B835C47628E1C8D100C71F34 /* explosion.sks */,
 				B835C47528E1C8D100C71F34 /* starfield.sks */,
 			);

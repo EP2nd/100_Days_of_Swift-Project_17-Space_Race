@@ -8,26 +8,29 @@
 import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
     var starfield: SKEmitterNode!
     var player: SKSpriteNode!
+    var scoreLabel: SKLabelNode!
+    var gameOverLabel: SKLabelNode!
+    var restartLabel: SKLabelNode!
+    
+    var gameTimer: Timer?
+    
     let possibleEnemies = ["ball", "hammer", "tv"]
     
-    var scoreLabel: SKLabelNode!
     var score = 0 {
         didSet {
             scoreLabel.text = "Score: \(score)"
         }
     }
-    
-    var isGameOver = false
-    var gameTimer: Timer?
     var timeInterval = 1.0
     var enemiesCreated = 0
     
-    var gameOverLabel: SKLabelNode!
-    var restartLabel: SKLabelNode!
+    var isGameOver = false
     
     override func didMove(to view: SKView) {
+        
         backgroundColor = .black
         
         starfield = SKEmitterNode(fileNamed: "starfield")
@@ -48,6 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func start() {
+        
         player = SKSpriteNode(imageNamed: "player")
         player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.size)
         player.physicsBody?.contactTestBitMask = 1
@@ -64,6 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let gameOverLabel = gameOverLabel {
             gameOverLabel.removeFromParent()
         }
+        
         if let restartLabel = restartLabel {
             restartLabel.removeFromParent()
         }
@@ -76,6 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         guard let touch = touches.first else { return }
         
         var location = touch.location(in: self)
@@ -85,10 +91,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if location.y > 668 {
             location.y = 668
         }
+        
         player.position = location
     }
-    // Challenge 1:
+    /// Challenge 1:
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         guard let touch = touches.first else { return }
         
         let location = touch.location(in: self)
@@ -104,18 +112,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        
         for node in children {
             if node.position.x < -300 {
                 node.removeFromParent()
             }
         }
+        
         if !isGameOver {
             score += 1
         }
     }
     
     @objc func createEnemy() {
-        // Challenge 3:
+        /// Challenge 3:
         if isGameOver {
             return
         }
@@ -136,21 +146,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.linearDamping = 0
         sprite.physicsBody?.angularDamping = 0
         
-        // Challenge 2:
+        /// Challenge 2:
         if enemiesCreated >= 20 && enemiesCreated % 20 == 0 {
+            
             gameTimer?.invalidate()
+            
             if timeInterval >= 0.3 {
                 timeInterval -= 0.1
             }
+            
             gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(createEnemy), userInfo: nil, repeats: true)
         }
     }
-    // Challenge 1:
+    /// Challenge 1:
     func didBegin(_ contact: SKPhysicsContact) {
         gameOver()
     }
-    // Challenge 1:
+    /// Challenge 1:
     func gameOver() {
+        
         let explosion = SKEmitterNode(fileNamed: "explosion")!
         explosion.position = player.position
         addChild(explosion)
